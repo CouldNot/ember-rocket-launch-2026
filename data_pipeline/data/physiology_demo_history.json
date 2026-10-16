@@ -1,0 +1,50 @@
+[
+  {
+    "participant_id": "40",
+    "trial_id": "P40_C7",
+    "elapsed_seconds": 3600,
+    "heart_rate_bpm": 91.13333333333334,
+    "core_temp_c": 38.04666666666667,
+    "skin_chest_temp_c": 35.201366666666665
+  },
+  {
+    "participant_id": "40",
+    "trial_id": "P40_C7",
+    "elapsed_seconds": 3660,
+    "heart_rate_bpm": 91.03333333333332,
+    "core_temp_c": 38.01,
+    "skin_chest_temp_c": 35.05473333333333
+  },
+  {
+    "participant_id": "40",
+    "trial_id": "P40_C7",
+    "elapsed_seconds": 3720,
+    "heart_rate_bpm": 88.33333333333333,
+    "core_temp_c": 37.98666666666667,
+    "skin_chest_temp_c": 34.95
+  },
+  {
+    "participant_id": "40",
+    "trial_id": "P40_C7",
+    "elapsed_seconds": 3780,
+    "heart_rate_bpm": 83.8,
+    "core_temp_c": 37.95,
+    "skin_chest_temp_c": 34.88713333333333
+  },
+  {
+    "participant_id": "40",
+    "trial_id": "P40_C7",
+    "elapsed_seconds": 3840,
+    "heart_rate_bpm": 85.89999999999999,
+    "core_temp_c": 37.9,
+    "skin_chest_temp_c": 34.78236666666667
+  },
+  {
+    "participant_id": "40",
+    "trial_id": "P40_C7",
+    "elapsed_seconds": 3900,
+    "heart_rate_bpm": 87.03333333333335,
+    "core_temp_c": 37.86333333333334,
+    "skin_chest_temp_c": 34.7614
+  }
+]
