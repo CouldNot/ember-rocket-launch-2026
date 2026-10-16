@@ -8,7 +8,7 @@ const components = [
  {name:'Power & data port',tag:'06 / INTERFACE',color:'#d6c597',text:'The five-pin connector provides power and digital communication with the wearable controller. Pin 1: 5 V supply; pin 2: RX/SDA; pin 3: TX/SCL; pin 4: interface select; pin 5: ground.',output:'UART or I²C particle data. Location and identity come from the phone/relay, not this connector or the SPS30 itself.'}
 ];
 const canvas=document.querySelector('#model'),ctx=canvas.getContext('2d');
-let yaw=-.55,pitch=.65,zoom=1,exploded=false,enclosed=false,selected=0,faces=[],width=0,height=0,drag=null;
+let yaw=-.55,pitch=-.65,zoom=1,exploded=false,enclosed=false,selected=0,faces=[],width=0,height=0,drag=null;
 const detail=document.querySelector('#detail'),parts=document.querySelector('#parts');
 components.forEach((p,i)=>{const b=document.createElement('button');b.innerHTML='<small>'+p.tag+'</small><strong>'+p.name+'</strong>';b.setAttribute('aria-pressed',String(i===selected));b.addEventListener('click',()=>select(i));parts.append(b)});
 function select(i){selected=i;const p=components[i];detail.innerHTML='<span class="part-number">'+p.tag+'</span><h2 class="detail-title">'+p.name+'</h2><p class="detail-copy">'+p.text+'</p><div class="detail-output"><small>MEASUREMENT ROLE</small><p>'+p.output+'</p></div>';[...parts.children].forEach((b,j)=>b.setAttribute('aria-pressed',String(i===j)));draw()}
@@ -43,7 +43,7 @@ canvas.addEventListener('pointerup',e=>{if(drag&&!drag.moved){const r=canvas.get
 function changeZoom(delta){zoom=Math.max(.6,Math.min(1.7,zoom+delta));draw()}
 canvas.addEventListener('wheel',e=>{e.preventDefault();changeZoom(-e.deltaY*.001)},{passive:false});
 canvas.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-','Home'].includes(e.key)){e.preventDefault();if(e.key==='ArrowLeft')yaw-=.15;if(e.key==='ArrowRight')yaw+=.15;if(e.key==='ArrowUp')pitch=Math.min(1.3,pitch+.15);if(e.key==='ArrowDown')pitch=Math.max(-1.3,pitch-.15);if(e.key==='+')changeZoom(.1);if(e.key==='-')changeZoom(-.1);if(e.key==='Home')reset();draw()}});
-function reset(){yaw=-.55;pitch=.65;zoom=1;draw()}
+function reset(){yaw=-.55;pitch=-.65;zoom=1;draw()}
 document.querySelector('#reset').onclick=reset;document.querySelector('#plus').onclick=()=>changeZoom(.1);document.querySelector('#minus').onclick=()=>changeZoom(-.1);
 document.querySelector('#explode').onclick=e=>{exploded=!exploded;e.currentTarget.setAttribute('aria-pressed',String(exploded));e.currentTarget.textContent=exploded?'Assemble parts':'Explode parts';draw()};
 document.querySelector('#shell').onclick=e=>{enclosed=!enclosed;e.currentTarget.setAttribute('aria-pressed',String(enclosed));e.currentTarget.textContent=enclosed?'Hide enclosure':'Show enclosure';document.querySelector('#viewLabel').textContent=enclosed?'ENCLOSURE VIEW':'CUTAWAY VIEW';draw()};
