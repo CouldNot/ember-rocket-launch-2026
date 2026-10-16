@@ -1,0 +1,19 @@
+{
+  "title": "PROSPIE dataset for Prediction of Core Body Temperature from Multiple Variables and The physiological strain index does not reliably identify individuals at risk of reaching a thermal tolerance limit",
+  "authors": [
+    "George Havenith",
+    "Sarah Davey",
+    "Victoria Downie",
+    "Katy Griggs",
+    "Victoria Richmond"
+  ],
+  "repository": "Loughborough University Research Repository",
+  "dataset_doi": "https://doi.org/10.17028/rd.lboro.26076577.v1",
+  "download_url": "https://ndownloader.figshare.com/files/47227096",
+  "source_md5": "cdbdb0795d3c5d2923d199466513c163",
+  "license": "Creative Commons Attribution-NonCommercial 4.0 International",
+  "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "paper_doi": "https://doi.org/10.1007/s00421-021-04642-3",
+  "modifications": "Removed 9999 and author-red interpolated physiological values, ignored t=0 pseudo-completion flags, truncated after terminal events, created causal 5-minute histories and future experimental-stop labels; trained research-only models.",
+  "noncommercial_notice": "Original data and derived model/data included for non-commercial student research. Preserve authorship, source, license and modification notices. No endorsement by the original authors."
+}

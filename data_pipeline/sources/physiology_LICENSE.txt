@@ -1,0 +1,7 @@
+PROSPIE original dataset and this derived research package: CC BY-NC 4.0.
+Authors: George Havenith; Sarah Davey; Victoria Downie; Katy Griggs; Victoria Richmond.
+Source: https://doi.org/10.17028/rd.lboro.26076577.v1
+License: https://creativecommons.org/licenses/by-nc/4.0/
+Legal code: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+Non-commercial use only under the license. Preserve attribution and identify modifications. No medical, safety, commercial-use or author-endorsement claim is made.
+See physiology_provenance.json for transformations.

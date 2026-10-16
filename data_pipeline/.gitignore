@@ -1,0 +1,20 @@
+# Local environments, caches, and private command data
+.venv/
+__pycache__/
+*.pyc
+work/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.log
+# Downloaded or regenerated bulk research data are intentionally not versioned.
+data/*.csv
+sources/*.zip
+sources/*.xlsx
+sources/*.xls
+# Regenerated detailed predictions, raw replay, and machine logs.
+reports/*_test_predictions.csv
+reports/sensor_replay_results.jsonl
+reports/verification.json
+reports/demo_summary.json
+reports/physiology_summary.txt

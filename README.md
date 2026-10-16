@@ -22,3 +22,7 @@ Link a Sensor tab to the hosted viewer, or embed it in an iframe titled "EMBER i
 
 ## Verification
 JavaScript syntax and scripted interaction checks pass for six component selections, projected hotspot picking, rotation, zoom, and enclosure/explosion toggles.
+
+## Data pipeline and research models
+
+The [data_pipeline module](data_pipeline/README.md) adds a local PM2.5 ingestion API, source-isolated exposure calculations, trained research baselines, and held-out evaluation reports. See the [integration contract](data_pipeline/INTEGRATION.md) before connecting telemetry. These models do not establish firefighter health or make evacuation decisions.

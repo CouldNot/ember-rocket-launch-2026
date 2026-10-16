@@ -1,0 +1,161 @@
+{
+  "created_at_utc": "2026-10-16T21:18:40.416467+00:00",
+  "distribution": "Git source module with trained research models; bulk datasets excluded",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 46,
+      "sha256": "8630f88b773cac3032fff3c4bb73bb14b6b8116cf14b2c61dc62c48373e6559d"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 481,
+      "sha256": "ffeb99057ea12a90c831e9f7ad3d1dcccfc167c8bc71fec7a81829938c9d96ab"
+    },
+    {
+      "path": "config.json",
+      "bytes": 508,
+      "sha256": "330852510fb9d302f04791a7b158d7fd3e8aee6c14d95d1e663cd43e4946b546"
+    },
+    {
+      "path": "data/physiology_demo_history.json",
+      "bytes": 1215,
+      "sha256": "4844538700e05d8507cef78a03389773d55ff265b445554dc922108065f28a3b"
+    },
+    {
+      "path": "data/pm25_demo_history.json",
+      "bytes": 3107,
+      "sha256": "d28084334f861bf95c7f9b3d3cfc277a5721b992530bf9a679199dbc6beb63c3"
+    },
+    {
+      "path": "examples/pm25_replay.jsonl",
+      "bytes": 73683,
+      "sha256": "c0c313157492f1a1c9a69e845143876b38b88424706c473efe52c1657fec07d8"
+    },
+    {
+      "path": "input_schema.json",
+      "bytes": 2627,
+      "sha256": "53e6837d4f166bf7c3349bc71dd534bc2c57ddf4454f07f310735bd040bbc2a1"
+    },
+    {
+      "path": "INTEGRATION.md",
+      "bytes": 4756,
+      "sha256": "aa95db5b4795524ddf316c37685c185a7498fccb29801e38b7344a6d08abb6d5"
+    },
+    {
+      "path": "models/physiology_model.joblib",
+      "bytes": 1492,
+      "sha256": "ee0c02b127f8cae26ff725fa817e41bc53cdbc94d2e3163073b1ffe5bab4d7ef"
+    },
+    {
+      "path": "models/physiology_model_metadata.json",
+      "bytes": 616,
+      "sha256": "a2a0f8f781b71b242051f105fc544b75e8fcd7bb2e69e5c6ef9a8cba6ac67f73"
+    },
+    {
+      "path": "models/pm25_manifest.json",
+      "bytes": 2448,
+      "sha256": "3a9546ae1a45ec7cb797f3ad52310ff880dafbad638239b83cc9a77c38dbf1bf"
+    },
+    {
+      "path": "models/pm25_model.joblib",
+      "bytes": 116390,
+      "sha256": "391d8b730583ff0ae0e7bb99198a01465df3350f0d363ee0046eff65bc5ba16e"
+    },
+    {
+      "path": "physiology_model.py",
+      "bytes": 35736,
+      "sha256": "84e42d74d9842cbea0ed443ffc5ddc4653b92130011784d09c25e3a2808562f0"
+    },
+    {
+      "path": "pipeline.py",
+      "bytes": 26619,
+      "sha256": "19c087d09be194ecd669755986e9b127c61b36f39084386d99884357f851e363"
+    },
+    {
+      "path": "pm25_model.py",
+      "bytes": 27360,
+      "sha256": "0728729c1117d3ce1cbb5241d4668d0b7d3afa451a1e60cbc0b14bac2f64cb72"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9586,
+      "sha256": "4f9c4e8b16c92a811ba28fab59409d8478b9bce5daad92f6eb500b08f8e0e24d"
+    },
+    {
+      "path": "reports/physiology_demo_manifest.json",
+      "bytes": 506,
+      "sha256": "baee54977643724ea901d6a224a94cb92d6ce93b2cbe34b89808fb19f9cdea02"
+    },
+    {
+      "path": "reports/physiology_report.json",
+      "bytes": 8533,
+      "sha256": "c8f9ee28380a26ca5886b95c2093ca41abdc7a51dfa441a7095fd3c0af58974c"
+    },
+    {
+      "path": "reports/pm25_checks.json",
+      "bytes": 4064,
+      "sha256": "f699b3e3324f8c1598e2b6a094ff82aa0563cdc6f6c871b4df0fba6bdac2ab22"
+    },
+    {
+      "path": "reports/pm25_metrics.json",
+      "bytes": 3924,
+      "sha256": "2d379370628bd1eb5567a9413ffcecb1cdef6b62045bf6aaca8900f6028469d9"
+    },
+    {
+      "path": "reports/pm25_prediction.png",
+      "bytes": 242952,
+      "sha256": "42169e40ef8071dd019f6b9919119e0f804c2d16de64c96155ba46417f4505f3"
+    },
+    {
+      "path": "reports/pm25_report.html",
+      "bytes": 4941,
+      "sha256": "cf79da6a53b23f3de616b782060e7f3fe45eba3dd33421856e808fb24c921c9d"
+    },
+    {
+      "path": "reports/project_report.html",
+      "bytes": 12664,
+      "sha256": "b6b10f893e10b0fba467e021a6b2cb45a45c431b20edaf98f976adfc5723d776"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 196,
+      "sha256": "57a8a5705a64acfe786e3422c26fb2fd7c220e6a098910372dc3ae5c0309dde4"
+    },
+    {
+      "path": "research_inference.py",
+      "bytes": 2134,
+      "sha256": "8f1742e6ac290ef4edb3a11eeae8177521ecddc2b336fd2f76074fb591d4a6db"
+    },
+    {
+      "path": "run_demo.py",
+      "bytes": 2706,
+      "sha256": "7797391f9739c76c1ddc917d18ec9ebbdb24e453650f4da1d7fd035bb3850697"
+    },
+    {
+      "path": "server.py",
+      "bytes": 9838,
+      "sha256": "244e62f01cec27f868c7b00452d2dfbd6469e03031dfc26a45808cb7fc10cbc3"
+    },
+    {
+      "path": "sources/physiology_LICENSE.txt",
+      "bytes": 558,
+      "sha256": "08a85900ad93bb5aac5754444cf5302d5dbbab3264a6f129e16d17a5daeb599d"
+    },
+    {
+      "path": "sources/physiology_provenance.json",
+      "bytes": 1271,
+      "sha256": "592693603b7bfaedcf732a3c79de30ad617a6bef334fa1d30828ae94467e1190"
+    },
+    {
+      "path": "sources/pm25_provenance.json",
+      "bytes": 964,
+      "sha256": "bc78b075dc4c1029c763a0739d65219c3a49857e98b370732ab5715443015be9"
+    },
+    {
+      "path": "tests/test_pipeline.py",
+      "bytes": 19999,
+      "sha256": "4eb7a31fc9924f821ec40fc70eda4e8e82d893d20cf731eb48941368aba6e146"
+    }
+  ]
+}

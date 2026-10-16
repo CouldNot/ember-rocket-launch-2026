@@ -1,0 +1,12 @@
+{
+  "source": "https://doi.org/10.17028/rd.lboro.26076577.v1",
+  "split": "test",
+  "domain": "prospie_experiment",
+  "selection": "First eligible positive test window in source order, selected without using model scores.",
+  "actual_target_early_stop_within_5min": 1,
+  "participant_id": "40",
+  "trial_id": "P40_C7",
+  "health_diagnosis": null,
+  "evacuation_decision": null,
+  "note": "Ground truth describes a recorded laboratory early-stop event. It is not a firefighter health or evacuation label."
+}
