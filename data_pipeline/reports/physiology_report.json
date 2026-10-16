@@ -1,0 +1,302 @@
+{
+  "model_version": "prospie-lab-5min-v1",
+  "task": "PROSPIE experimental early stop within the next 5 minutes",
+  "not_validated_for": [
+    "firefighter health diagnosis",
+    "firefighter evacuation",
+    "real fireground use",
+    "PM2.5-only devices"
+  ],
+  "selected_model": "logistic_regression",
+  "selected_by": "validation average precision only",
+  "test_used_for_selection": false,
+  "random_seed": 20261016,
+  "threshold_selection": "Maximize validation precision among thresholds with validation recall >= 0.80; frozen before testing.",
+  "threshold": 0.2631203794609403,
+  "score_is_calibrated_probability": false,
+  "cleaning": {
+    "raw_rows": 17264,
+    "rows_after_terminal_removed": 20,
+    "terminal_rows_excluded": 155,
+    "insufficient_or_missing_history_rows_excluded": 7546,
+    "right_censored_rows_excluded": 464,
+    "spurious_time_zero_terminal_codes_ignored": 8,
+    "raw_participants": 40,
+    "raw_trials": 155,
+    "raw_sampling_seconds": 60,
+    "required_feature_missing_counts": {
+      "heart_rate_bpm": 5311,
+      "skin_chest_temp_c": 644,
+      "core_temp_c": 68
+    },
+    "author_red_interpolated_measurements_removed": {
+      "core_temp_c": 34,
+      "skin_chest_temp_c": 18
+    },
+    "trial_outcomes": {
+      "1": 116,
+      "2": 35,
+      "3": 4
+    },
+    "eligible_windows": 9079,
+    "positive_windows": 105,
+    "eligible_participants": 22,
+    "eligible_trials": 96,
+    "red_policy": "Only source cells with explicit red FFFF0000 are considered author interpolation. Their physiological value is set missing, and any feature window touching it is excluded.",
+    "target_note": "Event 2 or 3 within (current time, current time + 300 s]. Completed trials with <300 s follow-up are right-censored and excluded. No stop metadata enters features.",
+    "raw_early_stop_trials": 39,
+    "early_stop_trials_with_eligible_positive_windows": 21
+  },
+  "splits": {
+    "train": {
+      "participant_ids": [
+        "29",
+        "30",
+        "32",
+        "33",
+        "34",
+        "35",
+        "37",
+        "38",
+        "41",
+        "42",
+        "44",
+        "46",
+        "47"
+      ],
+      "participants": 13,
+      "eligible_trials": 62,
+      "windows": 6028,
+      "positive_windows": 65
+    },
+    "validation": {
+      "participant_ids": [
+        "36",
+        "39",
+        "43",
+        "50"
+      ],
+      "participants": 4,
+      "eligible_trials": 17,
+      "windows": 1572,
+      "positive_windows": 20
+    },
+    "test": {
+      "participant_ids": [
+        "31",
+        "40",
+        "45",
+        "48",
+        "49"
+      ],
+      "participants": 5,
+      "eligible_trials": 17,
+      "windows": 1479,
+      "positive_windows": 20
+    }
+  },
+  "feature_names": [
+    "heart_rate_bpm_current",
+    "heart_rate_bpm_mean_5min",
+    "heart_rate_bpm_slope_per_min_5min",
+    "core_temp_c_current",
+    "core_temp_c_mean_5min",
+    "core_temp_c_slope_per_min_5min",
+    "skin_chest_temp_c_current",
+    "skin_chest_temp_c_mean_5min",
+    "skin_chest_temp_c_slope_per_min_5min"
+  ],
+  "required_future_sensors": [
+    "heart-rate monitor",
+    "measured rectal core temperature (dataset method)",
+    "chest skin-temperature sensor"
+  ],
+  "validation_candidates": {
+    "logistic_regression": {
+      "windows": 1572,
+      "positive_windows": 20,
+      "positive_prevalence": 0.01272264631043257,
+      "pr_auc_average_precision": 0.479837851611048,
+      "roc_auc": 0.9470360824742269,
+      "recall": 0.75,
+      "precision": 0.06726457399103139,
+      "confusion_matrix_rows_actual_columns_predicted": [
+        [
+          1344,
+          208
+        ],
+        [
+          5,
+          15
+        ]
+      ],
+      "threshold": 0.5
+    },
+    "random_forest": {
+      "windows": 1572,
+      "positive_windows": 20,
+      "positive_prevalence": 0.01272264631043257,
+      "pr_auc_average_precision": 0.3408614662968014,
+      "roc_auc": 0.8699259020618558,
+      "recall": 0.25,
+      "precision": 0.3333333333333333,
+      "confusion_matrix_rows_actual_columns_predicted": [
+        [
+          1542,
+          10
+        ],
+        [
+          15,
+          5
+        ]
+      ],
+      "threshold": 0.5
+    }
+  },
+  "validation_selected_threshold": {
+    "windows": 1572,
+    "positive_windows": 20,
+    "positive_prevalence": 0.01272264631043257,
+    "pr_auc_average_precision": 0.479837851611048,
+    "roc_auc": 0.9470360824742269,
+    "recall": 1.0,
+    "precision": 0.058997050147492625,
+    "confusion_matrix_rows_actual_columns_predicted": [
+      [
+        1233,
+        319
+      ],
+      [
+        0,
+        20
+      ]
+    ],
+    "threshold": 0.2631203794609403
+  },
+  "validation_threshold_tradeoffs": [
+    {
+      "windows": 1572,
+      "positive_windows": 20,
+      "positive_prevalence": 0.01272264631043257,
+      "pr_auc_average_precision": 0.479837851611048,
+      "roc_auc": 0.9470360824742269,
+      "recall": 1.0,
+      "precision": 0.05221932114882506,
+      "confusion_matrix_rows_actual_columns_predicted": [
+        [
+          1189,
+          363
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "threshold": 0.2
+    },
+    {
+      "windows": 1572,
+      "positive_windows": 20,
+      "positive_prevalence": 0.01272264631043257,
+      "pr_auc_average_precision": 0.479837851611048,
+      "roc_auc": 0.9470360824742269,
+      "recall": 1.0,
+      "precision": 0.058997050147492625,
+      "confusion_matrix_rows_actual_columns_predicted": [
+        [
+          1233,
+          319
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "threshold": 0.2631203794609403
+    },
+    {
+      "windows": 1572,
+      "positive_windows": 20,
+      "positive_prevalence": 0.01272264631043257,
+      "pr_auc_average_precision": 0.479837851611048,
+      "roc_auc": 0.9470360824742269,
+      "recall": 0.75,
+      "precision": 0.06726457399103139,
+      "confusion_matrix_rows_actual_columns_predicted": [
+        [
+          1344,
+          208
+        ],
+        [
+          5,
+          15
+        ]
+      ],
+      "threshold": 0.5
+    },
+    {
+      "windows": 1572,
+      "positive_windows": 20,
+      "positive_prevalence": 0.01272264631043257,
+      "pr_auc_average_precision": 0.479837851611048,
+      "roc_auc": 0.9470360824742269,
+      "recall": 0.75,
+      "precision": 0.21428571428571427,
+      "confusion_matrix_rows_actual_columns_predicted": [
+        [
+          1497,
+          55
+        ],
+        [
+          5,
+          15
+        ]
+      ],
+      "threshold": 0.8
+    }
+  ],
+  "test": {
+    "windows": 1479,
+    "positive_windows": 20,
+    "positive_prevalence": 0.013522650439486139,
+    "pr_auc_average_precision": 0.030409501418842105,
+    "roc_auc": 0.6682316655243317,
+    "recall": 0.65,
+    "precision": 0.03316326530612245,
+    "confusion_matrix_rows_actual_columns_predicted": [
+      [
+        1080,
+        379
+      ],
+      [
+        7,
+        13
+      ]
+    ],
+    "threshold": 0.2631203794609403,
+    "participants": 5,
+    "eligible_trials": 17,
+    "early_stop_trials_in_assigned_test_subjects": 4,
+    "early_stop_trials_with_eligible_positive_windows": 4,
+    "early_stop_trials_warned_within_5min": 3,
+    "negative_window_hours": 24.316666666666666,
+    "false_alert_episodes": 26,
+    "false_alert_episodes_per_negative_hour": 1.0692254969156958,
+    "event_metric_note": "Event warning evaluated only for early-stop trials with at least one eligible pre-event 5-minute window. Missing-data trials are separately counted and are not successes."
+  },
+  "software": {
+    "python": "3.10.11",
+    "sklearn": "1.7.2",
+    "pandas": "2.3.3",
+    "numpy": "2.2.6"
+  },
+  "limitations": [
+    "Small repeated-measures laboratory cohort; grouped holdout only, no clinical or firefighter external validation.",
+    "Target combines thermal intolerance and protocol core-temperature stopping events; it is not a diagnosis or universal withdrawal criterion.",
+    "Many heart-rate values are absent. Strict complete-history requirements exclude windows and some trials, creating availability and selection limitations.",
+    "No confidence intervals or probability calibration; point estimates are unstable with few independent positive trials.",
+    "The original workbook has no absolute timestamps; all history uses minutes since trial start.",
+    "The source's author-interpolated red physiological values are removed to avoid future interpolation leakage.",
+    "This source and derived package are CC BY-NC 4.0 for non-commercial use, with attribution."
+  ]
+}

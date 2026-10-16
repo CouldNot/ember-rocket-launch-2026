@@ -1,0 +1,116 @@
+{
+  "checks_passed": 19,
+  "checks": [
+    {
+      "name": "valid test history produces next-hour forecast",
+      "passed": true,
+      "available": true,
+      "reason": null
+    },
+    {
+      "name": "inference matches saved held-out prediction",
+      "passed": true
+    },
+    {
+      "name": "unknown domain is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "domain_not_validated: only stationary UCI Beijing hourly reference data are supported; 10-second fireground streams are not supported"
+    },
+    {
+      "name": "fireground domain is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "domain_not_validated: only stationary UCI Beijing hourly reference data are supported; 10-second fireground streams are not supported"
+    },
+    {
+      "name": "24 samples do not satisfy 24-hour warmup",
+      "passed": true,
+      "available": false,
+      "reason": "incomplete_history: at least 25 consecutive observed hourly samples (24-hour warmup) required"
+    },
+    {
+      "name": "reversed order is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "cadence_or_order_mismatch: timestamps must be strictly increasing at exact one-hour intervals with no missing hours"
+    },
+    {
+      "name": "duplicate timestamp is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "cadence_or_order_mismatch: timestamps must be strictly increasing at exact one-hour intervals with no missing hours"
+    },
+    {
+      "name": "missing hour is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "cadence_or_order_mismatch: timestamps must be strictly increasing at exact one-hour intervals with no missing hours"
+    },
+    {
+      "name": "10-second readings are rejected even if domain is asserted",
+      "passed": true,
+      "available": false,
+      "reason": "cadence_or_order_mismatch: timestamps must be strictly increasing at exact one-hour intervals with no missing hours"
+    },
+    {
+      "name": "null PM2.5 is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "incomplete_or_invalid_pm25: missing, negative, nonfinite, and boolean readings are not usable"
+    },
+    {
+      "name": "negative PM2.5 is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "incomplete_or_invalid_pm25: missing, negative, nonfinite, and boolean readings are not usable"
+    },
+    {
+      "name": "boolean PM2.5 is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "incomplete_or_invalid_pm25: missing, negative, nonfinite, and boolean readings are not usable"
+    },
+    {
+      "name": "nonfinite PM2.5 is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "incomplete_or_invalid_pm25: missing, negative, nonfinite, and boolean readings are not usable"
+    },
+    {
+      "name": "huge integer PM2.5 is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "incomplete_or_invalid_pm25: missing, negative, nonfinite, and boolean readings are not usable"
+    },
+    {
+      "name": "conflicting record source domain is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "source_mismatch: sample provenance contradicts the allowed research domain"
+    },
+    {
+      "name": "synthetic source is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "source_mismatch: sample provenance contradicts the allowed research domain"
+    },
+    {
+      "name": "timezone-less input is rejected",
+      "passed": true,
+      "available": false,
+      "reason": "invalid_timestamp: timezone missing"
+    },
+    {
+      "name": "mixed stations are rejected",
+      "passed": true,
+      "available": false,
+      "reason": "mixed_identity: samples must be from one source series"
+    },
+    {
+      "name": "selection uses validation MAE and split sample counts reconcile",
+      "passed": true
+    }
+  ],
+  "scope": "Interface and saved-test consistency checks; not clinical validation"
+}

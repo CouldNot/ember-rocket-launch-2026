@@ -1,0 +1,114 @@
+{
+  "model_version": "pm25-hourly-0.1.0",
+  "task": "one-hour-ahead ambient PM2.5 regression; not health or evacuation classification",
+  "source_domain": "uci_beijing_reference",
+  "units": "ug/m3",
+  "raw_rows": 43824,
+  "raw_pm25_missing_rows": 2067,
+  "supervised_usable_rows": 37455,
+  "excluded_candidate_windows": 6344,
+  "window_policy": "25 consecutive observations t-24..t and observed target t+1; drop any missing/invalid window; no imputation",
+  "split_policy": "target timestamp; no random split; historical context may cross a partition boundary",
+  "selection_metric": "minimum validation MAE; selected estimator remains fit only on training data",
+  "selected_model": "histgb_leaf15",
+  "splits": {
+    "train": {
+      "target_start_inclusive": "2010-01-01",
+      "target_end_exclusive": "2013-01-01",
+      "usable_samples": 21663,
+      "first_usable_target": "2010-01-03T01:00:00+08:00",
+      "last_usable_target": "2012-12-31T23:00:00+08:00"
+    },
+    "validation": {
+      "target_start_inclusive": "2013-01-01",
+      "target_end_exclusive": "2013-07-01",
+      "usable_samples": 3877,
+      "first_usable_target": "2013-01-01T00:00:00+08:00",
+      "last_usable_target": "2013-06-30T23:00:00+08:00"
+    },
+    "calibration": {
+      "target_start_inclusive": "2013-07-01",
+      "target_end_exclusive": "2014-01-01",
+      "usable_samples": 3990,
+      "first_usable_target": "2013-07-01T00:00:00+08:00",
+      "last_usable_target": "2013-12-31T23:00:00+08:00"
+    },
+    "test": {
+      "target_start_inclusive": "2014-01-01",
+      "target_end_exclusive": "2015-01-01",
+      "usable_samples": 7925,
+      "first_usable_target": "2014-01-01T00:00:00+08:00",
+      "last_usable_target": "2014-12-31T23:00:00+08:00"
+    }
+  },
+  "candidates": {
+    "persistence": {
+      "validation": {
+        "n": 3877,
+        "mae_ug_m3": 14.285787980397215,
+        "rmse_ug_m3": 28.024906936888364,
+        "p90_absolute_error_ug_m3": 32.0
+      }
+    },
+    "ridge_alpha_1": {
+      "validation": {
+        "n": 3877,
+        "mae_ug_m3": 14.288940797884491,
+        "rmse_ug_m3": 27.347652910786472,
+        "p90_absolute_error_ug_m3": 32.11324141257687
+      }
+    },
+    "ridge_alpha_100": {
+      "validation": {
+        "n": 3877,
+        "mae_ug_m3": 14.292031847021592,
+        "rmse_ug_m3": 27.316288915834786,
+        "p90_absolute_error_ug_m3": 31.95502885136319
+      }
+    },
+    "histgb_depth3": {
+      "validation": {
+        "n": 3877,
+        "mae_ug_m3": 14.214478725112437,
+        "rmse_ug_m3": 27.390788519481376,
+        "p90_absolute_error_ug_m3": 31.69743645733188
+      }
+    },
+    "histgb_leaf15": {
+      "validation": {
+        "n": 3877,
+        "mae_ug_m3": 14.13152667391984,
+        "rmse_ug_m3": 27.270516947820585,
+        "p90_absolute_error_ug_m3": 31.551329865048178
+      }
+    }
+  },
+  "calibration": {
+    "n": 3990,
+    "mae_ug_m3": 11.338353685257061,
+    "rmse_ug_m3": 19.60202699363694,
+    "p90_absolute_error_ug_m3": 26.564252223061892,
+    "absolute_residual_radius_ug_m3": 26.576538410816056,
+    "order_statistic_rank_one_based": 3592,
+    "nominal_coverage": 0.9,
+    "in_sample_calibration_coverage": 0.9002506265664161,
+    "method": "ceil((n+1)*0.90)-th absolute residual; symmetric additive interval, lower bound clipped at 0",
+    "limitation": "Empirical temporal calibration; no guaranteed future coverage under dependent data or domain shift; not a health probability"
+  },
+  "test": {
+    "selected": {
+      "n": 7925,
+      "mae_ug_m3": 12.041201282927762,
+      "rmse_ug_m3": 22.156059128083065,
+      "p90_absolute_error_ug_m3": 27.20475409801302,
+      "mae_relative_improvement_vs_persistence": -0.0003199313095152423
+    },
+    "persistence": {
+      "n": 7925,
+      "mae_ug_m3": 12.037350157728707,
+      "rmse_ug_m3": 22.332231873273223,
+      "p90_absolute_error_ug_m3": 27.0
+    },
+    "interval_coverage": 0.8970347003154574
+  }
+}
