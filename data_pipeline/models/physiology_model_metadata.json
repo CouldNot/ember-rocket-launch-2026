@@ -1,0 +1,20 @@
+{
+  "threshold": 0.2631203794609403,
+  "feature_names": [
+    "heart_rate_bpm_current",
+    "heart_rate_bpm_mean_5min",
+    "heart_rate_bpm_slope_per_min_5min",
+    "core_temp_c_current",
+    "core_temp_c_mean_5min",
+    "core_temp_c_slope_per_min_5min",
+    "skin_chest_temp_c_current",
+    "skin_chest_temp_c_mean_5min",
+    "skin_chest_temp_c_slope_per_min_5min"
+  ],
+  "model_name": "logistic_regression",
+  "version": "prospie-lab-5min-v1",
+  "domain": "prospie_experiment",
+  "license": "CC BY-NC 4.0",
+  "data_doi": "https://doi.org/10.17028/rd.lboro.26076577.v1",
+  "score_is_calibrated_probability": false
+}
