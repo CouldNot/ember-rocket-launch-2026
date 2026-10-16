@@ -1,0 +1,15 @@
+{
+  "title": "UCI Beijing PM2.5",
+  "dataset_id": 381,
+  "official_page": "https://archive.ics.uci.edu/dataset/381/beijing+pm2+5+data",
+  "download_link_observed_on_official_page": "https://archive.ics.uci.edu/static/public/381/beijing%2Bpm2%2B5%2Bdata.zip",
+  "archive_member": "PRSA_data_2010.1.1-2014.12.31.csv",
+  "local_csv": "data/pm25_source.csv",
+  "csv_sha256": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+  "citation": "Chen, S. (2015). Beijing PM2.5 [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5JS49",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "retrieved_on": "2026-10-16",
+  "changes": "Original CSV preserved; PM2.5 column and calendar fields selected for derived supervised windows; weather features unused",
+  "timezone_assumption": "Source calendar interpreted as UTC+08:00 for interface timestamps; UCI page does not explicitly state timezone"
+}
