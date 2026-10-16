@@ -1,0 +1,16 @@
+{
+  "expected_interval_seconds": 10.0,
+  "stale_after_seconds": 30.0,
+  "future_tolerance_seconds": 0.0,
+  "minimum_coverage_ratio": 0.8,
+  "rolling_window_seconds": 300.0,
+  "exposure_alert_threshold_ug_min_m3": null,
+  "demo": {
+    "enabled": true,
+    "elevated_pm25_ug_m3": 150.0,
+    "sustain_seconds": 60.0,
+    "rise_slope_ug_m3_per_min": 40.0,
+    "minimum_trend_points": 3,
+    "purpose": "Arbitrary simulation-only parameters; not medical limits. Never applied to sensor or replay sources."
+  }
+}

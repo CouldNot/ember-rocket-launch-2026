@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EMBER interval-average PM2.5 observation v1",
+  "description": "UTC timestamps required. PM2.5 is the measured average over [sample_start_utc, sample_end_utc). A 1 s sensor cadence and 10 s aggregation window are design targets, not verified hardware capabilities. Never fill missing values with zero. session_id is added by the gateway per deployment/shift. Runtime also validates ordering, interval overlap, finite numeric values, and timing against the evaluation clock.",
+  "type": "object",
+  "required": ["device_id", "firefighter_id", "session_id", "sample_start_utc", "sample_end_utc", "pm25_ug_m3", "quality_status", "source", "received_at_utc"],
+  "properties": {
+    "device_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "firefighter_id": {"type": "string", "minLength": 1, "maxLength": 128, "description": "Use a pseudonymous crew identifier."},
+    "session_id": {"type": "string", "minLength": 1, "maxLength": 128, "description": "Gateway-issued ID for one work session. Do not reuse across shifts."},
+    "sample_start_utc": {"type": "string", "format": "date-time", "pattern": "(Z|\\+00:00)$"},
+    "sample_end_utc": {"type": "string", "format": "date-time", "pattern": "(Z|\\+00:00)$"},
+    "pm25_ug_m3": {"type": ["number", "null"], "minimum": 0, "description": "Observed interval average in micrograms per cubic metre. null = no usable measurement."},
+    "latitude_deg": {"type": ["number", "null"], "minimum": -90, "maximum": 90},
+    "longitude_deg": {"type": ["number", "null"], "minimum": -180, "maximum": 180},
+    "location_time_utc": {"type": ["string", "null"], "format": "date-time", "pattern": "(Z|\\+00:00)$"},
+    "location_accuracy_m": {"type": ["number", "null"], "minimum": 0},
+    "battery_percent": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+    "quality_status": {"enum": ["valid", "warming_up", "sensor_error", "out_of_range"]},
+    "source": {"enum": ["sensor", "simulated", "replay"], "description": "Preserve source provenance. A public-dataset replay is not a live firefighter measurement."},
+    "received_at_utc": {"type": "string", "format": "date-time", "pattern": "(Z|\\+00:00)$", "description": "Gateway receipt time; never substitute this for collection time."},
+    "symptoms": {"type": "array", "items": {"type": "string"}, "description": "Optional manual report codes. request_help/confusion/loss_of_consciousness latch urgent assistance. The pipeline still detects a recognized urgent string in a malformed mixed-type list."}
+  },
+  "additionalProperties": true
+}
