@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EMBER · Data and Model Delivery Report</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f6f8;color:#172a3a;font:16px/1.75 "Segoe UI",Arial,sans-serif}main{max-width:1100px;margin:0 auto;padding:44px 28px 70px}h1{font-size:36px;line-height:1.25;margin:8px 0 18px}h2{font-size:23px;margin:32px 0 14px}h3{margin:0 0 10px;font-size:18px}p{margin:9px 0 14px}a{color:#006d83}header{border-bottom:3px solid #0b7185;padding-bottom:24px}.tag{color:#0b7185;letter-spacing:2px;font-size:13px;font-weight:700}.muted{color:#526676;font-size:14px}.notice{padding:20px 24px;border-left:5px solid #b25b1c;background:#fff2e7;border-radius:6px;margin:24px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:#fff;border:1px solid #dbe4e9;border-radius:10px;padding:20px}.metric{font-size:32px;font-weight:700;line-height:1.3}.metric small{font-size:16px}.flow{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.flow span{background:#e1eef1;padding:10px 13px;border-radius:5px}.flow b{color:#6d8593}table{width:100%;border-collapse:collapse;background:#fff;font-size:14px}th,td{padding:13px 14px;text-align:left;vertical-align:top;border-bottom:1px solid #dbe4e9}th{background:#dfebf0}code,pre{font-family:Consolas,monospace}code{font-size:13px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#132f40;color:#eaf4f7;padding:20px;border-radius:8px;font-size:13px}img{width:100%;height:auto;background:white;border:1px solid #dbe4e9;border-radius:8px}li{margin-bottom:7px}.footer{border-top:1px solid #c9d6dd;margin-top:34px;padding-top:18px}@media(max-width:750px){.grid{grid-template-columns:1fr}h1{font-size:29px}main{padding:25px 16px}table{font-size:12px}td,th{padding:8px}}
+</style>
+</head>
+<body><main>
+<header>
+<div class="tag">ROCKET / EMBER · DATA ENGINEERING</div>
+<h1>Models trained. Pipeline delivered.<br>Evacuation decisions remain unvalidated.</h1>
+<p>A real-time exposure-processing interface and two reproducible training workflows using public data, built around Rocket’s SPS30, ESP32, and GPS design. October 16, 2026.</p>
+</header>
+
+<div class="notice"><strong>Implementation decision:</strong> The real-time system uses data-quality checks, cumulative exposure tracking, and statuses for human review. The physiological logistic-regression model and PM2.5 gradient-boosting model remain offline research baselines. Neither provides sufficient evidence for real firefighter health or evacuation decisions. <code>evacuation_required = null</code> means unknown.</div>
+
+<section class="grid">
+<div class="card"><h3>Physiological research model</h3><div class="metric">Logistic regression</div><p class="muted">Higher validation average precision than random forest. The target is early termination of a laboratory trial within the next five minutes.</p></div>
+<div class="card"><h3>Held-out detection and false alerts</h3><div class="metric">65% <small>recall</small></div><p>Precision: <strong>3.32%</strong>. The test set contains five participants and 17 trials. Most alerts do not correspond to the target event.</p></div>
+<div class="card"><h3>Supported by current hardware</h3><div class="metric">PM2.5 pipeline</div><p class="muted">Concentration, timing, coverage, trends, assistance requests, storage, and queries. These measurements do not directly establish health status.</p></div>
+</section>
+
+<h2>From sensor readings to outputs</h2>
+<div class="flow"><span>Interval-average concentration</span><b>→</b><span>Time, source, and quality checks</span><b>→</b><span>Cumulative and rolling features</span><b>→</b><span>Human-review status</span><b>→</b><span>Local storage and API</span></div>
+<p>Records are processed separately by person, session, device, and source. Missing values are not replaced with zero. Duplicate or overlapping intervals are not counted twice, and gaps do not create invented exposure. The cumulative index is concentration multiplied by observed minutes; it is not an inhaled dose. Server queries check data freshness again when the status is requested.</p>
+<table>
+<thead><tr><th>Status</th><th>Meaning</th><th>Health or evacuation interpretation</th></tr></thead>
+<tbody>
+<tr><td><code>monitoring</code></td><td>Current valid readings support continued observation.</td><td>Health has not been assessed. This is not permission to remain on duty.</td></tr>
+<tr><td><code>check_in</code></td><td>A general report has been received or human review is needed.</td><td>The on-scene lead determines the appropriate response.</td></tr>
+<tr><td><code>urgent_assistance</code></td><td>An explicit help request or report of a severe symptom requires immediate human attention.</td><td>The request remains latched. Later normal concentration readings do not automatically clear it.</td></tr>
+<tr><td><code>insufficient_data</code></td><td>Readings are missing, stale, conflicting, or of inadequate quality.</td><td>The result remains unknown; it is not downgraded to normal.</td></tr>
+</tbody></table>
+
+<h2>Real training data and evaluation splits</h2>
+<table>
+<thead><tr><th>Item</th><th>PROSPIE physiological data</th><th>UCI Beijing PM2.5</th></tr></thead>
+<tbody>
+<tr><td>Original data</td><td>40 participants, 155 trials, and 17,264 one-minute records.</td><td>43,824 hourly records from 2010–2014.</td></tr>
+<tr><td>Eligible samples</td><td>9,079 windows from 22 participants and 96 trials; 105 positive windows.</td><td>37,455 windows with complete histories and targets.</td></tr>
+<tr><td>Inputs</td><td>Heart rate, measured rectal core temperature, and chest skin temperature. Six consecutive minute samples provide the current value, mean, and slope for each measurement.</td><td>25 consecutive hours of PM2.5, using past readings, rolling statistics, and trends.</td></tr>
+<tr><td>Target</td><td>Original experiment Event 2 or 3 within the next five minutes: thermal intolerance or a protocol-defined temperature stopping event.</td><td>PM2.5 concentration in the next hour, in µg/m³.</td></tr>
+<tr><td>Split</td><td>Grouped by participant: 13 for training, four for validation, and five for testing. A participant never appears in more than one split.</td><td>Training: 2010–2012. Validation: first half of 2013. Prediction-interval calibration: second half of 2013. Test: 2014.</td></tr>
+<tr><td>Missing data and leakage controls</td><td>Remove 9999 missing markers and author-interpolated values marked in red. Exclude terminal and later records. Exclude completed-trial windows with fewer than five minutes of remaining follow-up. Stopping information is used only for labels.</td><td>Discard windows with gaps or missing values. Use chronological splits and no filling from future observations.</td></tr>
+</tbody></table>
+
+<h2>Held-out results determine the limits of use</h2>
+<table>
+<thead><tr><th>Measure</th><th>Test result</th><th>Interpretation</th></tr></thead>
+<tbody>
+<tr><td>Physiological AP / ROC-AUC</td><td>0.0304 / 0.6682</td><td>Validation AP was 0.4798, followed by a substantial test decline. Positive windows make up 1.35% of the test set.</td></tr>
+<tr><td>Physiological recall / precision</td><td>65.0% / 3.32%</td><td>13 positive windows detected and seven missed; 379 negative windows produced false alerts.</td></tr>
+<tr><td>Physiological events and false alerts</td><td>Three of four early-stop trials had a warning before the event. There were 26 false-alert episodes over 24.32 negative observation hours.</td><td>Approximately 1.07 false-alert episodes per negative observation hour. The sample is small, with no external validation in firefighters.</td></tr>
+<tr><td>PM2.5 MAE</td><td>Model: 12.0412 µg/m³. Persistence baseline: 12.0374 µg/m³.</td><td>The model did not outperform the simple baseline on the test set. No accuracy improvement is claimed.</td></tr>
+<tr><td>PM2.5 empirical 90% prediction interval</td><td>Test coverage: 89.70%.</td><td>This does not guarantee coverage in a fireground environment or with a new sensor.</td></tr>
+</tbody></table>
+<p>The physiological threshold of 0.263120 was selected using the validation set only. Its scores are not calibrated probabilities. The 1,479 test windows are temporally correlated and must not be treated as 1,479 independent people. <strong>Of the original 39 early-stop trials, only 21 have eligible positive windows with complete histories.</strong> Reported performance is conditional on data availability and does not cover excluded participants or trials. The package includes the complete cleaning record, split definitions, candidate-model results, and individual predictions.</p>
+
+<div class="notice"><strong>A real missed event is retained in the demo:</strong> P40_C7 is the first eligible positive test window in source order. The laboratory trial actually ended early within the next five minutes, but the model score was approximately 0.00161 and no alert was raised. A low score does not establish good health. Model scores were not used to select this example.</div>
+
+<h2>Research domains and current hardware</h2>
+<p>The physiological model runs only when the caller explicitly declares <code>prospie_experiment</code> and supplies complete, matching inputs. Rocket’s current PM2.5 sensor does not provide the three required physiological measurements, so the model is unavailable for that input. The hourly concentration model is restricted to <code>uci_beijing_reference</code>; ten-second fireground data are rejected. A domain argument is a caller declaration, not validation of real-world deployment.</p>
+<p>Skin temperature cannot replace the measured core temperature used in the original study. Ordinary activity labels or psychological-stress labels are not relabeled as evacuation outcomes. This delivery provides traceable experiments and software interfaces; it is not a validated health-prediction product.</p>
+
+<h2>Quick start</h2>
+<pre>python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python run_demo.py
+.venv\Scripts\python -m unittest discover -s tests -v
+.venv\Scripts\python server.py</pre>
+<p>The default local endpoint is <code>127.0.0.1:8766</code>. <code>POST /v1/readings</code> accepts a sensor record. <code>GET /v1/crew/&lt;id&gt;?session_id=&lt;session&gt;</code> retrieves status. Historical examples use replay mode; sending them directly to the live interface marks them as stale.</p>
+<p><a href="../README.md">Full run instructions</a> · <a href="../input_schema.json">Input schema</a> · <a href="physiology_report.json">Physiological training and evaluation details</a> · <a href="pm25_report.html">Detailed PM2.5 report</a> · <a href="physiology_demo_manifest.json">Ground truth for the missed-event demo</a></p>
+
+<h2>Data the team needs to establish next</h2>
+<ol>
+<li>Agree on event definitions and reasons with operational and medical leads. Record physiological concerns, tactical withdrawals, and device failures as separate outcomes.</li>
+<li>With appropriate participant consent, synchronize physiological measurements, environmental readings, workload, protective equipment, and device-quality information. Preserve real missing data, assistance requests, and event times.</li>
+<li>Reserve independent participants, workdays, and locations for validation. Evaluate event detection, missed events, false alerts per person-hour, data availability, and warning lead time.</li>
+<li>Set validation criteria in advance and complete external field validation before considering individualized decision support.</li>
+</ol>
+
+<h2>Example from the held-out PM2.5 test period</h2>
+<img src="pm25_prediction.png" alt="Observed and predicted PM2.5 concentrations with an empirical prediction interval over part of the independent test period">
+<p class="muted">Full test statistics use 7,925 hourly windows. The chart shows only one segment.</p>
+
+<div class="footer">
+<strong>Sources and licensing</strong>
+<p><a href="https://doi.org/10.24432/C5JS49">UCI Beijing PM2.5 · Chen (2015)</a>: CC BY 4.0. <a href="https://doi.org/10.17028/rd.lboro.26076577.v1">PROSPIE · Havenith et al.</a>: CC BY-NC 4.0. PROSPIE and the derived data and model are provided for non-commercial research with attribution. The <code>sources</code> folder contains authorship, modification notes, and checksums.</p>
+<p class="muted">Local integration only; no cloud service has been deployed. Software checks establish processing behavior, not clinical reliability or suitability for fireground decisions.</p>
+</div>
+</main></body></html>
